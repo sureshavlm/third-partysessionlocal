@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+
+import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+ 
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,27 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'third-party-demo';
+  data: any = {};
+  sessionData: any = {};
+
+  constructor(@Inject(SESSION_STORAGE) private sessionStorage: StorageService, @Inject(LOCAL_STORAGE) private localStorage: WebStorageService) {
+  }
+
+
+
+  saveInLocal(key, val): void {
+
+    this.localStorage.set(key, val);
+    this.data[key]= this.localStorage.get(key);
+
+  	this.sessionStorage.set(key, val);
+    this.sessionData[key] = this.sessionStorage.get(key);
+   }
+
+   getFromLocal(key): void {
+    //console.log(this.storage);
+
+    this.data[key]= this.localStorage.get(key);
+    this.sessionData[key]= this.sessionStorage.get(key);
+   }
 }
