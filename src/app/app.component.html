@@ -1,6 +1,21 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <button (click)="saveInLocal('favouritecolor', 'red')">Save</button>
+
+
+  <button (click)="storeData('dburl', 'http://localhsot:3000/')">Store</button>
+
+  <div>
+    <h3>In Local Storage</h3>
+    {{localData | json}}
+  </div>
+
+   <div>
+    <h3>In Session Storage</h3>
+    {{sessionData | json}}
+  </div>
+
+
+  <!--<button (click)="saveInLocal('favouritecolor', 'red')">Save</button>
 
   <button (click)="getFromLocal('favouritecolor')">Show</button>
 
@@ -12,5 +27,5 @@
   <div>
     Session:
     {{sessionData | json}}
-  </div>
+  </div>-->
 </div>
